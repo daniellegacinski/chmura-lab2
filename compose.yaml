@@ -1,0 +1,10 @@
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"        # port dostępny tylko z Twojego komputera
+    environment:
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:-}   # token z pliku .env
+      - SERVICES=s3,lambda,iam,logs
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"      # Lambda uruchamia się w osobnym kontenerze
